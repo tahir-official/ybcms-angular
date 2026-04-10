@@ -1,0 +1,24 @@
+<div class="filters">
+  <label>Language:</label>
+  <select [(ngModel)]="langcode" (change)="onFilterChange()">
+    <option value="en">English</option>
+    <option value="hi">Hindi</option>
+    <option value="mr">Marathi</option>
+  </select>
+
+  <label>Category:</label>
+  <select [(ngModel)]="category" (change)="onFilterChange()">
+    <option value="">-- All Categories --</option>
+    <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.title }}</option>
+  </select>
+</div>
+
+<div *ngIf="loading">Loading testimonials…</div>
+
+<div *ngFor="let t of testimonials" class="testimonial-card">
+  <h3>{{ t.name }}</h3>
+  <p><strong>Role:</strong> {{ t.designation }}</p>
+  <p>{{ t.testimonial }}</p>
+  <img [src]="t.profile_image" width="100" />
+  <hr>
+</div>
